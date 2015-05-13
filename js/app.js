@@ -19,8 +19,9 @@ $(document).ready(function(){
 
     /*--- Checking to see if user is hot or cold ---*/
   	
-     $('#guessButton').click(function () {
+     $('#guessButton').click(function (event) {
 
+        event.preventDefault(); 
         var userGuess = $('#userGuess').val();
         userGuessAsInput = parseInt(userGuess);
         var guessDiff = Math.abs(hiddenNumber - userGuessAsInput);
