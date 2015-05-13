@@ -13,25 +13,37 @@ $(document).ready(function(){
   	});
 
   	/*--- Start New Game ---*/
-
-  	var hiddenNumber = Math.ceil(Math.random()*100);
-    var userGuess = $('#userGuess').val();
-    userGuessAsInput = parseInt(userGuess);
-    var guessDiff = Math.abs(hiddenNumber - userGuessAsInput);
+  	
+      var hiddenNumber = Math.ceil(Math.random()*100);
+      console.log(hiddenNumber);
 
     /*--- Checking to see if user is hot or cold ---*/
   	
      $('#guessButton').click(function () {
+
+        var userGuess = $('#userGuess').val();
+        userGuessAsInput = parseInt(userGuess);
+        var guessDiff = Math.abs(hiddenNumber - userGuessAsInput);
+
         if (isNaN(userGuessAsInput)==true) {
           alert("Please enter a number");
-        } else if (guessDiff <= 5) { 
-            alert("hot");
-        } else if (guessDiff <= 10) {
-            alert("warm");
-        } else 
-          alert("cold");
-
-    });
+        } else if (userGuessAsInput === hiddenNumber) {
+            alert("BINGO! You are a winner! Please play again.");
+        } else if (guessDiff > 0 && guessDiff <= 5) { 
+            alert("Hot");
+        } else if (guessDiff > 5 && guessDiff <= 10) {
+            alert("Hotter");
+        } else if (guessDiff > 10 && guessDiff <= 15) {
+            alert("Warmer");
+        } else if (guessDiff > 15 && guessDiff <= 20) {
+            alert("Luke warm");
+        } else if (guessDiff > 20 && guessDiff <= 25) {
+            alert("Cold");
+        } else {
+            alert("Freezing");
+        }
+      
+      });
 
 });
 
