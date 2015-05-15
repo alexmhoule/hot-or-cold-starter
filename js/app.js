@@ -12,8 +12,9 @@ $(document).ready(function(){
   		$(".overlay").fadeOut(1000);
   	});
 
-  	/*--- Start New Game ---*/
-  	
+  	/*--- Start ---*/
+  	  
+      var guessCounter = 0;
       var hiddenNumber = Math.ceil(Math.random()*100);
       console.log(hiddenNumber);
 
@@ -25,26 +26,45 @@ $(document).ready(function(){
         var userGuess = $('#userGuess').val();
         userGuessAsInput = parseInt(userGuess);
         var guessDiff = Math.abs(hiddenNumber - userGuessAsInput);
+        $('input#userGuess').val("");
+        guessCounter++;
+        $('#count').text(guessCounter);
 
         if (isNaN(userGuessAsInput)==true) {
           alert("Please enter a number");
         } else if (userGuessAsInput === hiddenNumber) {
-            alert("BINGO! You are a winner! Please play again.");
+            document.getElementById("feedback").innerHTML = ("BINGO! You are a winner. Please play again.");
         } else if (guessDiff > 0 && guessDiff <= 5) { 
-            alert("Hot");
+            document.getElementById("feedback").innerHTML = ("Hot.");
+            $('#guessList').append('<li>' + userGuessAsInput + '</li>');
         } else if (guessDiff > 5 && guessDiff <= 10) {
-            alert("Hotter");
+            document.getElementById("feedback").innerHTML = ("Hotter.");
+            $('#guessList').append('<li>' + userGuessAsInput + '</li>');
         } else if (guessDiff > 10 && guessDiff <= 15) {
-            alert("Warmer");
+            document.getElementById("feedback").innerHTML = ("Warmer.");
+            $('#guessList').append('<li>' + userGuessAsInput + '</li>');
         } else if (guessDiff > 15 && guessDiff <= 20) {
-            alert("Luke warm");
+            document.getElementById("feedback").innerHTML = ("Luke Warm.");
+            $('#guessList').append('<li>' + userGuessAsInput + '</li>');
         } else if (guessDiff > 20 && guessDiff <= 25) {
-            alert("Cold");
+            document.getElementById("feedback").innerHTML = ("Cold.");
+            $('#guessList').append('<li>' + userGuessAsInput + '</li>');
         } else {
-            alert("Freezing");
+            document.getElementById("feedback").innerHTML = ("Freezing.");
+            $('#guessList').append('<li>' + userGuessAsInput + '</li>');
         }
       
       });
+
+    /*--- New Game Button ---*/
+
+      $('.new').click(function () {
+
+        location.reload();
+
+      });
+
+
 
 });
 
